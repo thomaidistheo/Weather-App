@@ -15,6 +15,10 @@ button {
   font-size: inherit;
 }
 
+.hidden {
+  display: none !important;
+}
+
 /* ---------------------------------------------------------- */
 .main-section {
   height: 50vh;
@@ -32,7 +36,32 @@ button {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
   gap: 50px;
+}
+
+.main-section .location-error {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background: #e64646;
+  color: #ececec;
+  padding: 25px 35px;
+  border-radius: 8px;
+  -webkit-box-shadow: 5px 5px 10px rgba(230, 70, 70, 0.7);
+          box-shadow: 5px 5px 10px rgba(230, 70, 70, 0.7);
 }
 
 .main-section .location-info {
@@ -96,7 +125,7 @@ button {
 .main-section .current-weather vseperator {
   width: 1px;
   height: 75%;
-  background-color: #000;
+  background-color: #1b1b1b;
   opacity: 0.3;
 }
 

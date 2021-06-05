@@ -10,7 +10,17 @@
     height: 50vh;
     width: 100vw;
     @include flexColCenter;
+    justify-content: start;
     gap: 50px;
+
+    .location-error {
+        @include flexColCenter;
+        background: $red;
+        color: $white;
+        padding: 25px 35px;
+        border-radius: $radius;
+        box-shadow: 5px 5px 10px rgba($red, 0.7);
+    }
 
     .location-info {
         @include flexColCenter;
