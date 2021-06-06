@@ -6,77 +6,118 @@
 
 /* ---------------------------------------------------------- */
 
-.main-section {
-    height: 50vh;
-    width: 100vw;
+.location-error {
+    background: $red;
+    color: $white;
+    padding: 25px 35px;
+    border-radius: $sm-radius;
+    box-shadow: 5px 5px 10px rgba($red, 0.7);
+    margin: 50px 20px;
+
+    p {
+        margin-bottom: 5px;
+   
+        &::before {
+            content: '• ';
+        }
+    }
+
+    button {
+        margin-top: 20px;
+        background-color: rgba($white, 0.3);
+        border: none;
+        color: $white;
+        padding: 10px 15px;
+        border-radius: $sm-radius;
+        cursor: pointer;
+
+        &:active {
+            background-color: rgba($white, 0.2);
+            scale: 0.95;
+        }
+    }   
+}
+
+.flex-container {
     @include flexColCenter;
     justify-content: start;
-    gap: 50px;
-
-    .location-error {
-        @include flexColCenter;
-        background: $red;
-        color: $white;
-        padding: 25px 35px;
-        border-radius: $radius;
-        box-shadow: 5px 5px 10px rgba($red, 0.7);
+    width: 100vw;
+    height: 100vh;
+    padding: 50px 20px;
+    
+    .location {
+        margin-bottom: 20px;
     }
-
-    .location-info {
+    
+    .banner {
+        background-color: $grey300;
+        width: 100%;
+        padding: 25px 25px;
+        border-radius: $sm-radius;
+        color: $grey900;
+    
         @include flexColCenter;
-        gap: 10px;
-
-        .location {
-            font-size: 28px;
-            opacity: 0.6;
-        }
-
-        .weather-desc {
-            text-transform: capitalize;
-        }
-    }
-
-    .current-weather {
-        @include flexRowCenter;
-        gap: 20px;
-        
-        .degree-section {
-            display: flex;
-
-            .weather-temp {
-                font-size: 72px;
-                font-weight: 300;
+    
+        &__current {
+            @include flexRowCenter;
+            justify-content: space-evenly;
+            width: 100%;
+            margin-bottom: 20px;
+            font-size: 42px;
+            gap: 50px;
+    
+            .current-temp {
+                width: 100px;
+                height: 100px;
+                display: grid;
+                place-items: center;
             }
-
-            span {
-                font-size: 28px;
+            vseperator {
+                height: 25%;
+                width: 1px;
+                background-color: $grey900;
+                opacity: 0.3;
             }
         }
-
-        vseperator {
-            width: 1px; 
-            height: 75%;
-            background-color: $black;
-            opacity: 0.3;
+    
+        &__hilo {
+            @include flexRowCenter;
+            gap: 20px;
+            width: 100%;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+    
+        .current-desc {
+            font-size: 12px;
         }
     }
 
     .more-info {
-        @include flexColCenter;
-        gap: 10px;
-        
-        h3 {
-            opacity: 0.5;
-            font-weight: 300;
-            margin-bottom: 20px;
-        }
-        
+        background-color: $grey900;
+        color: $grey300;
+        font-size: 14px;
+        margin-top: -10px;
+
+        @include flexRowCenter;
+        gap: 20px;
+        padding: 8px 20px;
+        border-radius: 25px;
+
+
         .row {
-            display: flex;
-            gap: 30px;
+            @include flexRowCenter;
+            gap: 5px;
+
+            img {
+                width: auto;
+                height: 13px;
+            }
         }
     }
 }
+
+
 
 
 

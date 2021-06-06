@@ -5,16 +5,19 @@ window.addEventListener('load', () => {
     const apiKey = config.WEATHER_API
 
     let apiErrorMsg = document.querySelector('.location-error')
-
-    let currentTime = document.querySelector('.current-time')
+    
+    let flexContainer = document.querySelector('.flex-container')
     let location = document.querySelector('.location')
-    let weatherDesc = document.querySelector('.weather-desc')
-    let weatherTemp = document.querySelector('.weather-temp')
-    let weatherIcon = document.querySelector('.weather-icon')
-
-    let cloudPercentage = document.querySelector('.cloud-percentage')
-    let humidityPercentage = document.querySelector('.humidity-percentage')
-    let visibilityMetres = document.querySelector('.visibility-metres')
+    let currentTemp = document.querySelector('.current-temp')
+    let currentIcon = document.querySelector('.current-icon')
+    // TODO find how the hell do i get these from the crappy api
+    let currentHi = document.querySelector('.current-high')
+    let currentLo = document.querySelector('.current-low')
+    let currentDesc = document.querySelector('.current-desc')
+    let currentWind = document.querySelector('.current-wind')
+    let currentClouds = document.querySelector('.current-clouds')
+    let currentHumidity = document.querySelector('.current-humidity')
+    let currentVisibility = document.querySelector('.current-visibility')
 
     let visibility
 
@@ -24,7 +27,7 @@ window.addEventListener('load', () => {
             lat = position.coords.latitude
             console.log(`long: ${lon} lat: ${lat}`)
 
-            const api = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=daily&units=${units}&appid=${apiKey}`
+            const api = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`
 
             function handleErrors(res) {
                 if (!res.ok) {
@@ -44,14 +47,16 @@ window.addEventListener('load', () => {
                     console.log(data)
 
                     const currentWeather = {
-                        date: data.current.dt,
                         timezone: data.timezone,
-                        weatherDesc: data.current.weather[0].description,
-                        weatherTemp: data.current.temp,
-                        weatherIcon: `http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`,
-                        cloudPercentage: data.current.clouds,
-                        humidityPercentage: data.current.humidity,
-                        visibility: data.current.visibility
+                        currentDesc: data.current.weather[0].description,
+                        currentTemp: data.current.temp,
+                        currentIcon: `http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`,
+                        currentWind: data.current.wind_speed,
+                        currentClouds: data.current.clouds,
+                        currentHumidity: data.current.humidity,
+                        visibility: data.current.visibility,
+                        currentHi: data.daily[0].temp.max,
+                        currentLo: data.daily[0].temp.min
                     }
                     populateUI(currentWeather)
                 })
@@ -59,27 +64,31 @@ window.addEventListener('load', () => {
         })
     } else {
         apiErrorMsg.classList.remove('hidden')
+        flexContainer.classList.add('hidden')
+
     }
 
     let populateUI = (currentWeather) => {
-        currentTime.textContent = currentWeather.date
         location.textContent = currentWeather.timezone
-        weatherDesc.textContent = currentWeather.weatherDesc
-        weatherTemp.textContent = currentWeather.weatherTemp
-        weatherIcon.src = currentWeather.weatherIcon
-        cloudPercentage.textContent = `${currentWeather.cloudPercentage}%`
-        humidityPercentage.textContent = `${currentWeather.humidityPercentage}%`
+        currentDesc.textContent = currentWeather.currentDesc
+        currentTemp.textContent = `${Math.round(currentWeather.currentTemp)}°`
+        currentHi.textContent = `H:${Math.round(currentWeather.currentHi)}°`
+        currentLo.textContent = `L:${Math.round(currentWeather.currentLo)}°`
+        currentIcon.src = currentWeather.currentIcon
+        currentWind.textContent = `${Math.floor(currentWeather.currentWind)} bft`
+        currentClouds.textContent = `${currentWeather.currentClouds} %`
+        currentHumidity.textContent = `${currentWeather.currentHumidity} %`
 
         visibility = currentWeather.visibility
 
         if (visibility > 9999) {
             visibility = visibility / 1000
-            visibilityMetres.textContent = `${visibility}km`
+            currentVisibility.textContent = `${visibility} km`
         } else if (visibility > 999 && visibility < 9999) {
             visibility = visibility / 100
-            visibilityMetres.textContent = `${visibility}km`
+            currentVisibility.textContent = `${visibility} km`
         } else {
-            visibilityMetres.textContent = `${visibility}m`
+            currentVisibility.textContent = `${visibility} m`
         }
     }
 })

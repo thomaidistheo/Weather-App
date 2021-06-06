@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* ---------------------- IMPORTS --------------------------- */
 * {
   margin: 0;
@@ -20,9 +21,40 @@ button {
 }
 
 /* ---------------------------------------------------------- */
-.main-section {
-  height: 50vh;
-  width: 100vw;
+.location-error {
+  background: #e64646;
+  color: #ececec;
+  padding: 25px 35px;
+  border-radius: 8px;
+  -webkit-box-shadow: 5px 5px 10px rgba(230, 70, 70, 0.7);
+          box-shadow: 5px 5px 10px rgba(230, 70, 70, 0.7);
+  margin: 50px 20px;
+}
+
+.location-error p {
+  margin-bottom: 5px;
+}
+
+.location-error p::before {
+  content: '• ';
+}
+
+.location-error button {
+  margin-top: 20px;
+  background-color: rgba(236, 236, 236, 0.3);
+  border: none;
+  color: #ececec;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.location-error button:active {
+  background-color: rgba(236, 236, 236, 0.2);
+  scale: 0.95;
+}
+
+.flex-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -39,58 +71,75 @@ button {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: start;
+  width: 100vw;
+  height: 100vh;
+  padding: 50px 20px;
+}
+
+.flex-container .location {
+  margin-bottom: 20px;
+}
+
+.flex-container .banner {
+  background-color: #E2E2E2;
+  width: 100%;
+  padding: 25px 25px;
+  border-radius: 8px;
+  color: #292929;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.flex-container .banner__current {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  width: 100%;
+  margin-bottom: 20px;
+  font-size: 42px;
   gap: 50px;
 }
 
-.main-section .location-error {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background: #e64646;
-  color: #ececec;
-  padding: 25px 35px;
-  border-radius: 8px;
-  -webkit-box-shadow: 5px 5px 10px rgba(230, 70, 70, 0.7);
-          box-shadow: 5px 5px 10px rgba(230, 70, 70, 0.7);
+.flex-container .banner__current .current-temp {
+  width: 100px;
+  height: 100px;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
 }
 
-.main-section .location-info {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  gap: 10px;
+.flex-container .banner__current vseperator {
+  height: 25%;
+  width: 1px;
+  background-color: #292929;
+  opacity: 0.3;
 }
 
-.main-section .location-info .location {
-  font-size: 28px;
-  opacity: 0.6;
-}
-
-.main-section .location-info .weather-desc {
-  text-transform: capitalize;
-}
-
-.main-section .current-weather {
+.flex-container .banner__hilo {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -105,57 +154,57 @@ button {
       -ms-flex-pack: center;
           justify-content: center;
   gap: 20px;
+  width: 100%;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 
-.main-section .current-weather .degree-section {
+.flex-container .banner .current-desc {
+  font-size: 12px;
+}
+
+.flex-container .more-info {
+  background-color: #292929;
+  color: #E2E2E2;
+  font-size: 14px;
+  margin-top: -10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-
-.main-section .current-weather .degree-section .weather-temp {
-  font-size: 72px;
-  font-weight: 300;
-}
-
-.main-section .current-weather .degree-section span {
-  font-size: 28px;
-}
-
-.main-section .current-weather vseperator {
-  width: 1px;
-  height: 75%;
-  background-color: #1b1b1b;
-  opacity: 0.3;
-}
-
-.main-section .more-info {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
+  -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  gap: 10px;
+  gap: 20px;
+  padding: 8px 20px;
+  border-radius: 25px;
 }
 
-.main-section .more-info h3 {
-  opacity: 0.5;
-  font-weight: 300;
-  margin-bottom: 20px;
-}
-
-.main-section .more-info .row {
+.flex-container .more-info .row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  gap: 30px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 5px;
+}
+
+.flex-container .more-info .row img {
+  width: auto;
+  height: 13px;
 }
 /*# sourceMappingURL=styles.css.map */

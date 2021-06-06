@@ -8,50 +8,51 @@
 
     <link rel="stylesheet" href="styles/styles.css">
 </head>
-<body class="dark-mode">
-    <div class="main-section">
-        <div class="location-info">
-            <p class="current-time">Time</p>
-            <p class="location">Continent / City</p>
-            <p class="weather-desc">Weather Type</p>
-        </div>
+<body>
+    <div class="location-error hidden">
+        <p>Failed to find location.</p> 
+        <p>Please allow browser to use location services</p>
+    
+        <button>Reload Page</button>
+    </div>
 
-        <div class="location-error hidden">
-            <p>Failed to find location.</p> 
-            <p> Please allow browser to use location services</p>
+    <div class="flex-container">
+        <p class="location">Continent / City</p>   
+
+
+        <div class="banner">
+            <div class="banner__current">
+                <p class="current-temp">69</p>
+                <vseperator></vseperator>
+                <img class="current-icon"></img>
+            </div>
+            <div class="banner__hilo">
+                <p class="current-high">H:27</p>
+                <p class="current-low">H:23</p>
+            </div>
+            <p class="current-desc">Weather Type</p>
         </div>
         
-        <div class="current-weather">
-            <div class=degree-section>
-                <h1 class="weather-temp">69</h1>
-                <span>o</span>
-            </div>
-
-            <vseperator></vseperator>
-
-            <img class="weather-icon"></img>
-        </div>
-
         <div class="more-info">
-            <h3>More Info</h3>
             <div class="row">
-                <p>Clouds:</p>
-                <p class="cloud-percentage">%</p>
+                <img src="assets/wind.png" alt="wind icon">
+                <p class="current-wind">bft</p>
             </div>
             <div class="row">
-                <p>Humidity:</p>
-                <p class="humidity-percentage">%</p>
+                <img src="assets/cloud.png" alt="cloud icon">
+                <p class="current-clouds">%</p>
             </div>
             <div class="row">
-                <p>Visibility:</p>
-                <p class="visibility-metres">m</p>
+                <img src="assets/humidity.png" alt="humidity icon">
+                <p class="current-humidity">%</p>
             </div>
-        </div>
-
-        <div class="hourly-info">
-
+            <div class="row">
+                <img src="assets/visibility.png" alt="eye / visibility icon">
+                <p class="current-visibility">m</p>
+            </div>
         </div>
     </div>
+     
     
     <script type='text/javascript' src='config.js'></script>
     <script type='text/javascript' src="script.js"></script> 
