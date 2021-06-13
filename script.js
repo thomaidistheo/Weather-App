@@ -10,7 +10,6 @@ window.addEventListener('load', () => {
     let location = document.querySelector('.location')
     let currentTemp = document.querySelector('.current-temp')
     let currentIcon = document.querySelector('.current-icon')
-    // TODO find how the hell do i get these from the crappy api
     let currentHi = document.querySelector('.current-high')
     let currentLo = document.querySelector('.current-low')
     let currentDesc = document.querySelector('.current-desc')
@@ -18,7 +17,6 @@ window.addEventListener('load', () => {
     let currentClouds = document.querySelector('.current-clouds')
     let currentHumidity = document.querySelector('.current-humidity')
     let currentVisibility = document.querySelector('.current-visibility')
-
     let dailyList = document.querySelector('#daily-list')
 
     let visibility
@@ -39,7 +37,7 @@ window.addEventListener('load', () => {
             }
 
             fetch(api, {
-                mode: 'cors'
+                // mode: 'cors'
             })
                 .then(handleErrors)
                 .then(res => {
@@ -47,8 +45,6 @@ window.addEventListener('load', () => {
                 })
                 .then(data => {
                     console.log(data)
-
-
 
                     const currentWeather = {
                         timezone: data.timezone,
@@ -67,9 +63,9 @@ window.addEventListener('load', () => {
 
 
 
-                    dailyForecast.forEach(day => {
-                        temp = day.temp.day
-                        day = day.dt
+                    dailyForecast.forEach(upcomingDay => {
+                        temp = upcomingDay.temp.day
+                        day = upcomingDay.dt
 
                         let newDay = new Date(day*1000);
                         let days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -77,12 +73,21 @@ window.addEventListener('load', () => {
                         
                         newLi = document.createElement('li')
                         dailyList.appendChild(newLi)
+
                         createDay = document.createElement('p')
                         newLi.appendChild(createDay)
                         createDay.textContent = dayOfWeek
+
+                        newDiv = document.createElement('div')
+                        newLi.appendChild(newDiv)
+
                         createTemp = document.createElement('p')
                         createTemp.textContent = `${Math.round(temp)}°`
-                        newLi.appendChild(createTemp)
+                        newDiv.appendChild(createTemp)
+
+                        createIcon = document.createElement('img')
+                        createIcon.src = `http://openweathermap.org/img/wn/${upcomingDay.weather[0].icon}.png`
+                        newDiv.appendChild(createIcon)
                     })
 
                     populateUI(currentWeather)

@@ -43,7 +43,7 @@
     justify-content: start;
     // width: 100vw;
     height: 100%;
-    padding: 50px 20px;
+    padding: 10px 15px;
 
 
     @media (min-width: $breakpoint-tablet) {
@@ -81,11 +81,17 @@
                     display: grid;
                     place-items: center;
                 }
+                
                 .vseperator {
                     height: 25px;
                     width: 1px;
                     background-color: $grey900;
                     opacity: 0.4;
+                }
+
+                .current-icon {
+                    height: 100px;
+                    width: auto;
                 }
             }
 
@@ -107,21 +113,28 @@
             color: $grey300;
             font-size: 14px;
             margin-top: -10px;
-            margin-bottom: 160px;
+            margin-bottom: 110px;
 
             @include flexRowCenter;
-            gap: 20px;
             padding: 8px 20px;
             border-radius: 25px;
 
 
-            .row {
+            li {
                 @include flexRowCenter;
-                gap: 5px;
+                margin-right: 15px;
+                padding-right: 5px;
+                border-right: 1px solid rgba(255, 255, 255, 0.3);
+
+                &:last-child {
+                    margin-right: 0px;
+                    border-right: none;
+                }
 
                 img {
                     width: auto;
                     height: 13px;
+                    margin-right: 5px;
                 }
             }
         }
@@ -138,6 +151,8 @@
         background-color: $grey300;
         padding: 30px 30px;
         border-radius: $sm-radius;
+
+        margin-bottom: 30px;
 
         h3 {
             margin-bottom: 30px;
@@ -160,6 +175,17 @@
 
                 &:last-child {
                     margin-bottom: 0px;
+                }
+
+                div {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    img {
+                        height: 35px;
+                        width: auto;
+                    }
                 }
             }
         }
