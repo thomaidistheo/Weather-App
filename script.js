@@ -19,6 +19,8 @@ window.addEventListener('load', () => {
     let currentHumidity = document.querySelector('.current-humidity')
     let currentVisibility = document.querySelector('.current-visibility')
 
+    let dailyList = document.querySelector('#daily-list')
+
     let visibility
 
     if (navigator.geolocation) {
@@ -46,6 +48,8 @@ window.addEventListener('load', () => {
                 .then(data => {
                     console.log(data)
 
+
+
                     const currentWeather = {
                         timezone: data.timezone,
                         currentDesc: data.current.weather[0].description,
@@ -56,8 +60,31 @@ window.addEventListener('load', () => {
                         currentHumidity: data.current.humidity,
                         visibility: data.current.visibility,
                         currentHi: data.daily[0].temp.max,
-                        currentLo: data.daily[0].temp.min
+                        currentLo: data.daily[0].temp.min,
                     }
+
+                    dailyForecast = data.daily
+
+
+
+                    dailyForecast.forEach(day => {
+                        temp = day.temp.day
+                        day = day.dt
+
+                        let newDay = new Date(day*1000);
+                        let days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+                        let dayOfWeek = days[newDay.getDay()]
+                        
+                        newLi = document.createElement('li')
+                        dailyList.appendChild(newLi)
+                        createDay = document.createElement('p')
+                        newLi.appendChild(createDay)
+                        createDay.textContent = dayOfWeek
+                        createTemp = document.createElement('p')
+                        createTemp.textContent = `${Math.round(temp)}°`
+                        newLi.appendChild(createTemp)
+                    })
+
                     populateUI(currentWeather)
                 })
 
@@ -75,20 +102,20 @@ window.addEventListener('load', () => {
         currentHi.textContent = `H:${Math.round(currentWeather.currentHi)}°`
         currentLo.textContent = `L:${Math.round(currentWeather.currentLo)}°`
         currentIcon.src = currentWeather.currentIcon
-        currentWind.textContent = `${Math.floor(currentWeather.currentWind)} bft`
-        currentClouds.textContent = `${currentWeather.currentClouds} %`
-        currentHumidity.textContent = `${currentWeather.currentHumidity} %`
+        currentWind.textContent = `${Math.floor(currentWeather.currentWind)}bft`
+        currentClouds.textContent = `${currentWeather.currentClouds}%`
+        currentHumidity.textContent = `${currentWeather.currentHumidity}%`
 
         visibility = currentWeather.visibility
 
         if (visibility > 9999) {
             visibility = visibility / 1000
-            currentVisibility.textContent = `${visibility} km`
+            currentVisibility.textContent = `${visibility}km`
         } else if (visibility > 999 && visibility < 9999) {
             visibility = visibility / 100
-            currentVisibility.textContent = `${visibility} km`
+            currentVisibility.textContent = `${visibility}km`
         } else {
-            currentVisibility.textContent = `${visibility} m`
+            currentVisibility.textContent = `${visibility}m`
         }
     }
 })

@@ -17,38 +17,46 @@
     </div>
 
     <div class="flex-container">
-        <p class="location">Continent / City</p>   
+        <div class="current-container">
+            <p class="location">Continent / City</p>   
 
-        <div class="banner">
-            <div class="banner__current">
-                <p class="current-temp">69</p>
-                <div class="vseperator"></div>
-                <img class="current-icon"></img>
+            <div class="banner">
+                <div class="banner__current">
+                    <p class="current-temp">69</p>
+                    <div class="vseperator"></div>
+                    <img class="current-icon"></img>
+                </div>
+                <div class="banner__hilo">
+                    <p class="current-high">H:27</p>
+                    <p class="current-low">H:23</p>
+                </div>
+                <p class="current-desc">Weather Type</p>
             </div>
-            <div class="banner__hilo">
-                <p class="current-high">H:27</p>
-                <p class="current-low">H:23</p>
+            
+            <div class="more-info">
+                <div class="row">
+                    <img src="assets/wind.png" alt="wind icon">
+                    <p class="current-wind">bft</p>
+                </div>
+                <div class="row">
+                    <img src="assets/cloud.png" alt="cloud icon">
+                    <p class="current-clouds">%</p>
+                </div>
+                <div class="row">
+                    <img src="assets/humidity.png" alt="humidity icon">
+                    <p class="current-humidity">%</p>
+                </div>
+                <div class="row">
+                    <img src="assets/visibility.png" alt="eye / visibility icon">
+                    <p class="current-visibility">m</p>
+                </div>
             </div>
-            <p class="current-desc">Weather Type</p>
         </div>
-        
-        <div class="more-info">
-            <div class="row">
-                <img src="assets/wind.png" alt="wind icon">
-                <p class="current-wind">bft</p>
-            </div>
-            <div class="row">
-                <img src="assets/cloud.png" alt="cloud icon">
-                <p class="current-clouds">%</p>
-            </div>
-            <div class="row">
-                <img src="assets/humidity.png" alt="humidity icon">
-                <p class="current-humidity">%</p>
-            </div>
-            <div class="row">
-                <img src="assets/visibility.png" alt="eye / visibility icon">
-                <p class="current-visibility">m</p>
-            </div>
+
+        <div class="daily-container">
+            <h3>Daily</h3>
+            <ul id="daily-list">
+            </ul>
         </div>
     </div>
      
