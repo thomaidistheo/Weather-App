@@ -41,9 +41,14 @@
 .flex-container {
     @include flexColCenter;
     justify-content: start;
-    width: 100vw;
-    height: 100vh;
+    // width: 100vw;
+    // height: 100vh;
     padding: 50px 20px;
+
+
+    @media (min-width: $breakpoint-tablet) {
+        padding: 50px 25%;
+    }
     
     .location {
         margin-bottom: 20px;
@@ -72,11 +77,11 @@
                 display: grid;
                 place-items: center;
             }
-            vseperator {
-                height: 25%;
+            .vseperator {
+                height: 25px;
                 width: 1px;
                 background-color: $grey900;
-                opacity: 0.3;
+                opacity: 1;
             }
         }
     
