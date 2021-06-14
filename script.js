@@ -5,6 +5,7 @@ window.addEventListener('load', () => {
     const apiKey = config.WEATHER_API
 
     let apiErrorMsg = document.querySelector('.location-error')
+    let reloadBtn = document.querySelector('#reloadBtn')
     
     let flexContainer = document.querySelector('.flex-container')
     let location = document.querySelector('.location')
@@ -17,7 +18,7 @@ window.addEventListener('load', () => {
     let currentClouds = document.querySelector('.current-clouds')
     let currentHumidity = document.querySelector('.current-humidity')
     let currentVisibility = document.querySelector('.current-visibility')
-    let dailyList = document.querySelector('#daily-list')
+    let dailyList = document.querySelector('#dailyList')
 
     let visibility
 
@@ -29,23 +30,16 @@ window.addEventListener('load', () => {
 
             const api = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`
 
-            function handleErrors(res) {
-                if (!res.ok) {
-                    throw Error(res.statusText)
-                }
-                return res
+            async function fetchWeather() {
+                const res = await fetch(api)
+                const data = await res.json()
+                return data
             }
 
-            fetch(api, {
-                // mode: 'cors'
-            })
-                .then(handleErrors)
-                .then(res => {
-                    return res.json()
-                })
+            fetchWeather() 
                 .then(data => {
                     console.log(data)
-
+            
                     const currentWeather = {
                         timezone: data.timezone,
                         currentDesc: data.current.weather[0].description,
@@ -58,47 +52,51 @@ window.addEventListener('load', () => {
                         currentHi: data.daily[0].temp.max,
                         currentLo: data.daily[0].temp.min,
                     }
-
+            
                     dailyForecast = data.daily
-
-
 
                     dailyForecast.forEach(upcomingDay => {
                         temp = upcomingDay.temp.day
                         day = upcomingDay.dt
-
+            
                         let newDay = new Date(day*1000);
                         let days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
                         let dayOfWeek = days[newDay.getDay()]
                         
                         newLi = document.createElement('li')
                         dailyList.appendChild(newLi)
-
+            
                         createDay = document.createElement('p')
                         newLi.appendChild(createDay)
                         createDay.textContent = dayOfWeek
-
+            
                         newDiv = document.createElement('div')
                         newLi.appendChild(newDiv)
-
+            
                         createTemp = document.createElement('p')
                         createTemp.textContent = `${Math.round(temp)}°`
                         newDiv.appendChild(createTemp)
-
+            
                         createIcon = document.createElement('img')
                         createIcon.src = `http://openweathermap.org/img/wn/${upcomingDay.weather[0].icon}.png`
                         newDiv.appendChild(createIcon)
                     })
-
+            
                     populateUI(currentWeather)
                 })
+        }, 
+        error => {
+            if (error.code == error.PERMISSION_DENIED) {
+                apiErrorMsg.classList.remove('hidden')
+                flexContainer.classList.add('hidden')
 
+                reloadBtn.onclick = () => {
+                    window.location.reload()
+                }
+                console.log('GEO LOCATION WAS DENIED.\n\nPLEASE RELOAD THE BROWSER AND ALLOW FOR GEO LOCATION SERVICES TO BE USED')
+            }
         })
-    } else {
-        apiErrorMsg.classList.remove('hidden')
-        flexContainer.classList.add('hidden')
-
-    }
+    } 
 
     let populateUI = (currentWeather) => {
         location.textContent = currentWeather.timezone
