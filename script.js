@@ -22,82 +22,99 @@ window.addEventListener('load', () => {
 
     let visibility
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(position => {
-            lon = position.coords.longitude
-            lat = position.coords.latitude
-            console.log(`long: ${lon} lat: ${lat}`)
+    // When the user allows for location services, call the API 
+    function success(position) {
+        lon = position.coords.longitude
+        lat = position.coords.latitude
+        console.log(`long: ${lon} lat: ${lat}`)
 
-            const api = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`
+        const api = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=${units}&appid=${apiKey}`
 
-            async function fetchWeather() {
-                const res = await fetch(api)
-                const data = await res.json()
-                return data
-            }
+        // API call 
+        async function fetchWeather() {
+            const res = await fetch(api)
+            const data = await res.json()
+            return data
+        }
 
-            fetchWeather() 
-                .then(data => {
-                    console.log(data)
-            
-                    const currentWeather = {
-                        timezone: data.timezone,
-                        currentDesc: data.current.weather[0].description,
-                        currentTemp: data.current.temp,
-                        currentIcon: `http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`,
-                        currentWind: data.current.wind_speed,
-                        currentClouds: data.current.clouds,
-                        currentHumidity: data.current.humidity,
-                        visibility: data.current.visibility,
-                        currentHi: data.daily[0].temp.max,
-                        currentLo: data.daily[0].temp.min,
-                    }
-            
-                    dailyForecast = data.daily
-
-                    dailyForecast.forEach(upcomingDay => {
-                        temp = upcomingDay.temp.day
-                        day = upcomingDay.dt
-            
-                        let newDay = new Date(day*1000);
-                        let days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-                        let dayOfWeek = days[newDay.getDay()]
-                        
-                        newLi = document.createElement('li')
-                        dailyList.appendChild(newLi)
-            
-                        createDay = document.createElement('p')
-                        newLi.appendChild(createDay)
-                        createDay.textContent = dayOfWeek
-            
-                        newDiv = document.createElement('div')
-                        newLi.appendChild(newDiv)
-            
-                        createTemp = document.createElement('p')
-                        createTemp.textContent = `${Math.round(temp)}°`
-                        newDiv.appendChild(createTemp)
-            
-                        createIcon = document.createElement('img')
-                        createIcon.src = `http://openweathermap.org/img/wn/${upcomingDay.weather[0].icon}.png`
-                        newDiv.appendChild(createIcon)
-                    })
-            
-                    populateUI(currentWeather)
-                })
-        }, 
-        error => {
-            if (error.code == error.PERMISSION_DENIED) {
-                apiErrorMsg.classList.remove('hidden')
-                flexContainer.classList.add('hidden')
-
-                reloadBtn.onclick = () => {
-                    window.location.reload()
+        // Use the data from the API to create a current weather object
+        fetchWeather() 
+            .then(data => {
+                console.log(data)
+        
+                const currentWeather = {
+                    timezone: data.timezone,
+                    currentDesc: data.current.weather[0].description,
+                    currentTemp: data.current.temp,
+                    currentIcon: `http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`,
+                    currentWind: data.current.wind_speed,
+                    currentClouds: data.current.clouds,
+                    currentHumidity: data.current.humidity,
+                    visibility: data.current.visibility,
+                    currentHi: data.daily[0].temp.max,
+                    currentLo: data.daily[0].temp.min,
                 }
-                console.log('GEO LOCATION WAS DENIED.\n\nPLEASE RELOAD THE BROWSER AND ALLOW FOR GEO LOCATION SERVICES TO BE USED')
-            }
-        })
-    } 
+        
+                // Get the Daily Forecast data 
+                dailyForecast = data.daily
 
+                dailyForecast.forEach(upcomingDay => {
+                    temp = upcomingDay.temp.day
+                    day = upcomingDay.dt
+        
+                    let newDay = new Date(day*1000);
+                    let days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+                    let dayOfWeek = days[newDay.getDay()]
+                    
+                    newLi = document.createElement('li')
+                    dailyList.appendChild(newLi)
+        
+                    createDay = document.createElement('p')
+                    newLi.appendChild(createDay)
+                    createDay.textContent = dayOfWeek
+        
+                    newDiv = document.createElement('div')
+                    newLi.appendChild(newDiv)
+        
+                    createTemp = document.createElement('p')
+                    createTemp.textContent = `${Math.round(temp)}°`
+                    newDiv.appendChild(createTemp)
+        
+                    createIcon = document.createElement('img')
+                    createIcon.src = `http://openweathermap.org/img/wn/${upcomingDay.weather[0].icon}.png`
+                    newDiv.appendChild(createIcon)
+                })
+        
+                // POPULATE THE UI AFTER FETCHING THE INFO
+                populateUI(currentWeather)
+            })
+    }
+        
+    // Handle error in case of locasion services: denied
+    function error (error) {
+        if (error.code == error.PERMISSION_DENIED) {
+            apiErrorMsg.classList.remove('hidden')
+            flexContainer.classList.add('hidden')
+
+            reloadBtn.onclick = () => {
+                window.location.reload()
+            }
+            console.log('GEO LOCATION WAS DENIED.\n\nPLEASE RELOAD THE BROWSER AND ALLOW FOR GEO LOCATION SERVICES TO BE USED')
+        }
+
+    }
+
+    // Options for getCurrentPosition
+    let options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+        };
+
+    // Prompt user to Allow for geo location services
+    navigator.geolocation.getCurrentPosition(success, error, options)
+
+    // Insert the data to the DOM 
     let populateUI = (currentWeather) => {
         location.textContent = currentWeather.timezone
         currentDesc.textContent = currentWeather.currentDesc
@@ -111,6 +128,7 @@ window.addEventListener('load', () => {
 
         visibility = currentWeather.visibility
 
+        // Round visibility, to km or metres
         if (visibility > 9999) {
             visibility = visibility / 1000
             currentVisibility.textContent = `${visibility}km`
