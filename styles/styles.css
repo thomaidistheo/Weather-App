@@ -13,7 +13,7 @@ html {
 }
 
 body {
-  height: 95vh;
+  height: 100vh;
 }
 
 button {
@@ -74,9 +74,8 @@ button {
           justify-content: center;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
-          justify-content: start;
-  height: 100%;
-  padding: 10px 15px;
+          justify-content: flex-start;
+  padding: 0 15px;
 }
 
 .flex-container .flex-col {
@@ -110,10 +109,6 @@ button {
       -ms-flex-pack: center;
           justify-content: center;
   width: 100%;
-}
-
-.flex-container .current-container .location {
-  margin-bottom: 5px;
 }
 
 .flex-container .current-container .banner {

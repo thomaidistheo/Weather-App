@@ -41,10 +41,9 @@
 
 .flex-container {
     @include flexColCenter;
-    justify-content: start;
+    justify-content: flex-start;
     // width: 100vw;
-    height: 100%;
-    padding: 10px 15px;
+    padding: 0 15px;
 
     .flex-col {
         @include flexColCenter;
@@ -53,10 +52,6 @@
     .current-container {
         @include flexColCenter;
         width: 100%;
-
-        .location {
-            margin-bottom: 5px;
-        }
 
         .banner {
             background-color: $grey300;

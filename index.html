@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Because there are simply not enough weather apps yet." />
+    <meta property="og:url"content="http://www.rt-weather.netlify.app" />
+    <meta property="og:title" content="Another Weather App" />
+    <link rel="shortcut icon" type="image/ico" href="assets/favicon.ico"/>
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
     <title>Weather App</title> 
 
     <link rel="stylesheet" href="styles/styles.css">
@@ -15,12 +23,10 @@
     
         <button id="reloadBtn">Reload Page</button>
     </div>
-
     <div class="flex-container">
         <div class="current-container">
-            <p class="location"></p>   
-
             <div class="banner">
+                <p class="location"></p>   
                 <div class="banner__current">
                     <div class="flex-col">
                         <p class="current-temp"></p>
