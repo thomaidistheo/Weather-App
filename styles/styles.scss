@@ -46,7 +46,9 @@
     height: 100%;
     padding: 10px 15px;
 
-
+    .flex-col {
+        @include flexColCenter;
+    }
     
     .current-container {
         @include flexColCenter;
@@ -69,12 +71,11 @@
                 @include flexRowCenter;
                 justify-content: space-evenly;
                 width: 100%;
-                margin-bottom: 20px;
                 font-size: 45px;
 
                 .current-temp {
                     width: 100px;
-                    height: 100px;
+                    height: 110px;
                     display: grid;
                     place-items: center;
                 }
@@ -87,7 +88,7 @@
                 }
 
                 .current-icon {
-                    height: 100px;
+                    height: 110px;
                     width: auto;
                 }
             }
@@ -97,11 +98,11 @@
                 gap: 20px;
                 width: 100%;
                 font-size: 14px;
-                margin-bottom: 10px;
+                margin-bottom: 5px;
             }
 
             .current-desc {
-                font-size: 12px;
+                font-size: 14px;
             }
         }
 
@@ -110,7 +111,7 @@
             color: $grey300;
             font-size: 14px;
             margin-top: -10px;
-            margin-bottom: 110px;
+            margin-bottom: 40px;
 
             @include flexRowCenter;
             padding: 8px 20px;

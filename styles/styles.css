@@ -79,6 +79,22 @@ button {
   padding: 10px 15px;
 }
 
+.flex-container .flex-col {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .flex-container .current-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -139,13 +155,12 @@ button {
       -ms-flex-pack: space-evenly;
           justify-content: space-evenly;
   width: 100%;
-  margin-bottom: 20px;
   font-size: 45px;
 }
 
 .flex-container .current-container .banner__current .current-temp {
   width: 100px;
-  height: 100px;
+  height: 110px;
   display: -ms-grid;
   display: grid;
   place-items: center;
@@ -159,7 +174,7 @@ button {
 }
 
 .flex-container .current-container .banner__current .current-icon {
-  height: 100px;
+  height: 110px;
   width: auto;
 }
 
@@ -180,11 +195,11 @@ button {
   gap: 20px;
   width: 100%;
   font-size: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 
 .flex-container .current-container .banner .current-desc {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .flex-container .current-container .more-info {
@@ -192,7 +207,7 @@ button {
   color: #E2E2E2;
   font-size: 14px;
   margin-top: -10px;
-  margin-bottom: 110px;
+  margin-bottom: 40px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
