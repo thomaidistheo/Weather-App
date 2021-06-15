@@ -13,6 +13,7 @@ html {
 }
 
 body {
+  background-color: #f1f1f1;
   height: 100vh;
 }
 
@@ -27,7 +28,7 @@ button {
 /* ---------------------------------------------------------- */
 .location-error {
   background: #e64646;
-  color: #ececec;
+  color: #f1f1f1;
   padding: 25px 35px;
   border-radius: 8px;
   -webkit-box-shadow: 5px 5px 10px rgba(230, 70, 70, 0.7);
@@ -45,16 +46,16 @@ button {
 
 .location-error button {
   margin-top: 20px;
-  background-color: rgba(236, 236, 236, 0.3);
+  background-color: rgba(241, 241, 241, 0.3);
   border: none;
-  color: #ececec;
+  color: #f1f1f1;
   padding: 10px 15px;
   border-radius: 8px;
   cursor: pointer;
 }
 
 .location-error button:active {
-  background-color: rgba(236, 236, 236, 0.2);
+  background-color: rgba(241, 241, 241, 0.2);
   scale: 0.95;
 }
 
@@ -112,11 +113,13 @@ button {
 }
 
 .flex-container .current-container .banner {
-  background-color: #E2E2E2;
+  background-color: #ffffff;
   width: 100%;
   padding: 20px 25px;
   border-radius: 8px;
   color: #292929;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -199,7 +202,7 @@ button {
 
 .flex-container .current-container .more-info {
   background-color: #292929;
-  color: #E2E2E2;
+  color: #ffffff;
   font-size: 14px;
   margin-top: -10px;
   margin-bottom: 40px;
@@ -265,10 +268,12 @@ button {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
-  background-color: #E2E2E2;
+  background-color: #ffffff;
   padding: 30px 30px;
   border-radius: 8px;
   margin-bottom: 30px;
+  -webkit-box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+          box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 .flex-container .daily-container h3 {

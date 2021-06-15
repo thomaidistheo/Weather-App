@@ -39,6 +39,8 @@
 }
 
 
+
+
 .flex-container {
     @include flexColCenter;
     justify-content: flex-start;
@@ -59,6 +61,8 @@
             padding: 20px 25px;
             border-radius: $sm-radius;
             color: $grey900;
+
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 
             @include flexColCenter;
 
@@ -146,6 +150,8 @@
         border-radius: $sm-radius;
 
         margin-bottom: 30px;
+
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
 
         h3 {
             margin-bottom: 30px;
