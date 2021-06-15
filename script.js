@@ -46,7 +46,7 @@ window.addEventListener('load', () => {
                     timezone: data.timezone,
                     currentDesc: data.current.weather[0].description,
                     currentTemp: data.current.temp,
-                    currentIcon: `http://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`,
+                    currentIcon: `https://openweathermap.org/img/wn/${data.current.weather[0].icon}@2x.png`,
                     currentWind: data.current.wind_speed,
                     currentClouds: data.current.clouds,
                     currentHumidity: data.current.humidity,
@@ -81,7 +81,7 @@ window.addEventListener('load', () => {
                     newDiv.appendChild(createTemp)
         
                     createIcon = document.createElement('img')
-                    createIcon.src = `http://openweathermap.org/img/wn/${upcomingDay.weather[0].icon}.png`
+                    createIcon.src = `https://openweathermap.org/img/wn/${upcomingDay.weather[0].icon}.png`
                     newDiv.appendChild(createIcon)
                 })
         

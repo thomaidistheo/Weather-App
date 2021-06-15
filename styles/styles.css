@@ -79,12 +79,6 @@ button {
   padding: 10px 15px;
 }
 
-@media (min-width: 768px) {
-  .flex-container {
-    padding: 50px 25%;
-  }
-}
-
 .flex-container .current-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -103,13 +97,13 @@ button {
 }
 
 .flex-container .current-container .location {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
 }
 
 .flex-container .current-container .banner {
   background-color: #E2E2E2;
   width: 100%;
-  padding: 25px 25px;
+  padding: 20px 25px;
   border-radius: 8px;
   color: #292929;
   display: -webkit-box;
@@ -146,8 +140,7 @@ button {
           justify-content: space-evenly;
   width: 100%;
   margin-bottom: 20px;
-  font-size: 42px;
-  gap: 50px;
+  font-size: 45px;
 }
 
 .flex-container .current-container .banner__current .current-temp {
@@ -312,5 +305,15 @@ button {
 .flex-container .daily-container ul li div img {
   height: 35px;
   width: auto;
+}
+
+@media (min-width: 768px) {
+  .banner,
+  .current-container {
+    width: 500px !important;
+  }
+  .daily-container {
+    width: 500px !important;
+  }
 }
 /*# sourceMappingURL=styles.css.map */
